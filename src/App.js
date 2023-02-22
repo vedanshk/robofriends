@@ -2,7 +2,7 @@ import { useState } from "react";
 import { search, robots } from "./robots";
 import Robolist from "./components/Robolist";
 import SearchBox from "./components/SearchBox";
-
+import Scroll from "./components/Scroll";
 function App() {
   const [data, setData] = useState(robots);
   const handleSearch = (term) => {
@@ -14,9 +14,11 @@ function App() {
   };
   return (
     <div className="tc">
-        <h1>Robot Friends</h1>
+      <h1>Robot Friends</h1>
       <SearchBox onSearch={handleSearch} />
-      <Robolist robots={data} />
+      <Scroll>
+        <Robolist robots={data} />
+      </Scroll>
     </div>
   );
 }
