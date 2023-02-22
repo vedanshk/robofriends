@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { search, robots } from "./robots";
+import Robolist from "./components/Robolist";
+import SearchBox from "./components/SearchBox";
 
 function App() {
+  const [data, setData] = useState(robots);
+  const handleSearch = (term) => {
+    if (term == "") {
+      setData(robots);
+    }
+    const searchResult = search(term.toLowerCase());
+    setData(searchResult);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="tc">
+        <h1>Robot Friends</h1>
+      <SearchBox onSearch={handleSearch} />
+      <Robolist robots={data} />
     </div>
   );
 }
