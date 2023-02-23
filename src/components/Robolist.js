@@ -1,6 +1,8 @@
 import React from "react";
 import Robot from "./Robot";
 function Robolist({ robots }) {
+
+  
   const renderedRobots = robots.map((robot) => (
     <Robot key={robot.id} robot={robot} />
   ));

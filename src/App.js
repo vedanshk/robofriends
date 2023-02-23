@@ -3,6 +3,7 @@ import { search, robots } from "./robots";
 import Robolist from "./components/Robolist";
 import SearchBox from "./components/SearchBox";
 import Scroll from "./components/Scroll";
+import ErrorBoundary from "./components/ErrorBoundary";
 function App() {
   const [data, setData] = useState(robots);
   const handleSearch = (term) => {
@@ -12,7 +13,9 @@ function App() {
     const searchResult = search(term.toLowerCase());
     setData(searchResult);
   };
-  return (
+
+  try{
+      return (
     <div className="tc">
       <h1>Robot Friends</h1>
       <SearchBox onSearch={handleSearch} />
@@ -21,6 +24,10 @@ function App() {
       </Scroll>
     </div>
   );
+  }catch(e){
+     <ErrorBoundary error={e} />
+  }
+
 }
 
 export default App;
